@@ -11,10 +11,6 @@ const payments = [
     logo: (
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         <circle cx="18" cy="18" r="18" fill="#EA4C89"/>
-        <path d="M18 6C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z" fill="#EA4C89"/>
-        <path d="M18 6c-3.3 0-6.3 1.35-8.49 3.51C11.34 12.06 14.52 13.8 18.3 14.1c.57-2.76 1.02-5.49 1.2-8.07C19.02 6.03 18.51 6 18 6z" fill="white" opacity="0.3"/>
-        <path d="M27.9 10.5c-1.83 2.28-4.62 3.84-7.8 4.2-.18 2.94-.12 5.91.18 8.82 3.96-1.08 7.02-4.02 8.28-7.8-.24-1.8-.36-3.48-.66-5.22z" fill="white" opacity="0.3"/>
-        <path d="M9.3 21.9c1.56.66 3.27 1.02 5.07 1.02 1.62 0 3.18-.3 4.62-.84-.3-2.88-.36-5.79-.18-8.67-3.96-.36-7.32-2.22-9.51-5.01C7.8 11.04 7.2 13.44 7.2 16c0 2.16.75 4.14 2.1 5.9z" fill="white" opacity="0.3"/>
         <circle cx="18" cy="18" r="11" fill="none" stroke="white" strokeWidth="1.5" opacity="0.6"/>
         <path d="M9 14 Q18 16 27 13" stroke="white" strokeWidth="1.2" fill="none" opacity="0.8"/>
         <path d="M8 20 Q18 22 28 19" stroke="white" strokeWidth="1.2" fill="none" opacity="0.8"/>
@@ -28,13 +24,7 @@ const payments = [
     time: "11:45 PM",
     amount: "12, 345. 89 USD",
     logo: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-        <circle cx="18" cy="18" r="18" fill="#f8f8f8"/>
-        <text x="18" y="23" textAnchor="middle" fontSize="18" fontWeight="bold" fill="#4285F4">G</text>
-        <text x="18" y="23" textAnchor="middle" fontSize="18" fontWeight="bold">
-          <tspan fill="#4285F4">G</tspan>
-        </text>
-      </svg>
+      <img src="/icons/google.svg" alt="Google" className="w-9 h-9 rounded-full object-contain bg-gray-50 p-1" />
     ),
   },
   {
@@ -44,17 +34,14 @@ const payments = [
     time: "10:15 PM",
     amount: "32, 123. 67 USD",
     logo: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-        <circle cx="18" cy="18" r="18" fill="#f8f8f8"/>
-        <text x="18" y="24" textAnchor="middle" fontSize="20" fontWeight="bold" fill="#FF9900">a</text>
-      </svg>
+      <img src="/icons/amazon-logo.svg" alt="Amazon" className="w-9 h-9 rounded-full object-contain bg-gray-50 p-1" />
     ),
   },
 ];
 
 export default function PaymentHistory() {
   return (
-    <div className="bg-white rounded-3xl p-5 shadow-sm">
+    <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3 h-fit">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>

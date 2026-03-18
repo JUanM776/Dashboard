@@ -20,8 +20,8 @@ export default function Navbar() {
         <span className="font-extrabold text-gray-900 text-xl tracking-tight">Quixotic</span>
       </div>
 
-      {/* Nav links inside pill with visible border */}
-      <div className="hidden md:flex items-center border border-gray-200 rounded-full px-2 py-1.5 gap-1">
+      {/* Nav links inside pill — hidden on mobile */}
+      <div className="hidden lg:flex items-center border border-gray-200 rounded-full px-2 py-1.5 gap-1">
         {navLinks.map((link) => (
           <button
             key={link}

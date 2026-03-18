@@ -2,9 +2,8 @@
 import { ArrowUpRight, ArrowUp, ArrowDown } from "lucide-react";
 
 const sparkPoints = [3.5, 2.8, 4.8, 3.2, 2.2, 4.2, 3.0, 1.8, 3.8, 2.5, 4.5];
-
 const W = 300;
-const H = 120;
+const H = 80;
 const MAX = 5.5;
 const MIN = 1.2;
 
@@ -32,66 +31,43 @@ function buildArea(points: number[]) {
 
 export default function TotalBalanceCard() {
   return (
-    <div className="bg-white rounded-3xl shadow-sm flex flex-col overflow-hidden">
-      {/* Header */}
-      <div className="flex items-start justify-between px-5 pt-5 pb-2">
+    <div className="bg-white rounded-2xl shadow-sm flex flex-col overflow-hidden h-fit">
+      <div className="flex items-start justify-between px-4 pt-4 pb-1">
         <div>
-          <p className="font-bold text-gray-900 text-base">Payment Goal</p>
-          <p className="text-sm text-gray-400 mt-0.5">Total amount goal</p>
+          <p className="font-bold text-gray-900 text-sm">Payment Goal</p>
+          <p className="text-xs text-gray-400">Total amount goal</p>
         </div>
-        <button className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors">
-          <ArrowUpRight size={17} />
+        <button className="w-7 h-7 flex items-center justify-center bg-gray-100 rounded-full text-gray-500">
+          <ArrowUpRight size={13} />
         </button>
       </div>
-
-      {/* Balance */}
-      <div className="text-center px-5 pb-4">
-        <p className="text-sm text-gray-400 mb-1">Total Balance</p>
-        <p className="text-4xl font-bold text-gray-900 tracking-tight">
+      <div className="text-center px-4 pb-2">
+        <p className="text-xs text-gray-400 mb-0.5">Total Balance</p>
+        <p className="text-2xl font-bold text-gray-900 tracking-tight">
           $32,678.<span className="text-gray-400">90</span>
         </p>
       </div>
-
-      {/* Area chart — full width */}
       <div className="relative w-full">
-        {[0.25, 0.5, 0.75].map((ratio, i) => (
-          <div
-            key={i}
-            className="absolute w-full border-t border-dashed border-gray-200"
-            style={{ top: `${ratio * 100}%` }}
-          />
+        {[0.3, 0.6].map((r, i) => (
+          <div key={i} className="absolute w-full border-t border-dashed border-gray-100" style={{ top: `${r * 100}%` }} />
         ))}
-        <svg
-          viewBox={`0 0 ${W} ${H}`}
-          className="w-full"
-          preserveAspectRatio="none"
-          style={{ height: 130, display: "block" }}
-        >
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="none" style={{ height: 80, display: "block" }}>
           <defs>
-            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#1a7a4a" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#1a7a4a" stopOpacity="0.03" />
+            <linearGradient id="areaGrad2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#1a7a4a" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#1a7a4a" stopOpacity="0.02" />
             </linearGradient>
           </defs>
-          <path d={buildArea(sparkPoints)} fill="url(#areaGrad)" />
-          <path
-            d={buildSmoothPath(sparkPoints)}
-            fill="none"
-            stroke="#1a7a4a"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d={buildArea(sparkPoints)} fill="url(#areaGrad2)" />
+          <path d={buildSmoothPath(sparkPoints)} fill="none" stroke="#1a7a4a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
-
-      {/* Buttons */}
-      <div className="flex gap-3 px-5 py-4">
-        <button className="flex-1 flex items-center justify-center gap-2 bg-[#1a7a4a] text-white rounded-full py-3 text-sm font-semibold hover:bg-[#155f3a] transition-colors">
-          Send <ArrowUp size={15} />
+      <div className="flex gap-2 px-4 py-3">
+        <button className="flex-1 flex items-center justify-center gap-1.5 bg-[#1a7a4a] text-white rounded-full py-2 text-xs font-semibold hover:bg-[#155f3a] transition-colors">
+          Send <ArrowUp size={12} />
         </button>
-        <button className="flex-1 flex items-center justify-center gap-2 bg-gray-100 text-gray-600 rounded-full py-3 text-sm font-semibold hover:bg-gray-200 transition-colors">
-          Receive <ArrowDown size={15} />
+        <button className="flex-1 flex items-center justify-center gap-1.5 bg-gray-100 text-gray-600 rounded-full py-2 text-xs font-semibold hover:bg-gray-200 transition-colors">
+          Receive <ArrowDown size={12} />
         </button>
       </div>
     </div>

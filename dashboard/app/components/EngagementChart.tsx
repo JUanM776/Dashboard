@@ -12,15 +12,15 @@ const data = [
 
 const MAX = 5;
 const H = 200;
-const BAR_W = 52;
-const GAP = 28;
+const BAR_W = 44;
+const GAP = 22;
 const LEFT = 36;
 const TOTAL_W = LEFT + data.length * (BAR_W + GAP) - GAP + 10;
 const yTicks = [0, 1, 2, 3, 4, 5];
 
 export default function EngagementChart() {
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm flex flex-col gap-4">
+    <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3 h-fit">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -32,7 +32,7 @@ export default function EngagementChart() {
               <circle cx="10" cy="6" r="1" fill="#6b7280"/>
             </svg>
           </div>
-          <span className="font-semibold text-gray-800 text-base">Engagement Rate</span>
+      <span className="font-semibold text-gray-800 text-sm">Engagement Rate</span>
         </div>
         <div className="flex items-center gap-2">
           <button className="px-4 py-1.5 text-sm text-gray-500 rounded-full hover:bg-gray-100 transition-colors">
@@ -48,11 +48,11 @@ export default function EngagementChart() {
       </div>
 
       {/* Chart */}
-      <div className="w-full overflow-x-auto">
+      <div className="w-full flex-1">
         <svg
           viewBox={`0 0 ${TOTAL_W} ${H + 30}`}
-          className="w-full"
-          style={{ minWidth: 300 }}
+          className="w-full h-full"
+          style={{ minWidth: 280 }}
         >
           <defs>
             {/* Diagonal stripe pattern for light bars */}
