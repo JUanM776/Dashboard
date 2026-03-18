@@ -1,5 +1,7 @@
 "use client";
 import { ArrowUpRight, ArrowUp, ArrowDown } from "lucide-react";
+import { useState } from "react";
+import Toast from "./Toast";
 
 const sparkPoints = [3.5, 2.8, 4.8, 3.2, 2.2, 4.2, 3.0, 1.8, 3.8, 2.5, 4.5];
 const W = 300;
@@ -9,10 +11,7 @@ const MIN = 1.2;
 
 function toCoords(points: number[]) {
   const step = W / (points.length - 1);
-  return points.map((v, i) => ({
-    x: i * step,
-    y: H - ((v - MIN) / (MAX - MIN)) * H,
-  }));
+  return points.map((v, i) => ({ x: i * step, y: H - ((v - MIN) / (MAX - MIN)) * H }));
 }
 
 function buildSmoothPath(points: number[]) {
@@ -30,6 +29,8 @@ function buildArea(points: number[]) {
 }
 
 export default function TotalBalanceCard() {
+  const [toast, setToast] = useState("");
+
   return (
     <div className="bg-white rounded-2xl shadow-sm flex flex-col overflow-hidden h-fit">
       <div className="flex items-start justify-between px-4 pt-4 pb-1">
@@ -37,16 +38,21 @@ export default function TotalBalanceCard() {
           <p className="font-bold text-gray-900 text-sm">Payment Goal</p>
           <p className="text-xs text-gray-400">Total amount goal</p>
         </div>
-        <button className="w-7 h-7 flex items-center justify-center bg-gray-100 rounded-full text-gray-500">
+        <button
+          onClick={() => setToast("Opening details...")}
+          className="w-7 h-7 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors"
+        >
           <ArrowUpRight size={13} />
         </button>
       </div>
+
       <div className="text-center px-4 pb-2">
         <p className="text-xs text-gray-400 mb-0.5">Total Balance</p>
         <p className="text-2xl font-bold text-gray-900 tracking-tight">
           $32,678.<span className="text-gray-400">90</span>
         </p>
       </div>
+
       <div className="relative w-full">
         {[0.3, 0.6].map((r, i) => (
           <div key={i} className="absolute w-full border-t border-dashed border-gray-100" style={{ top: `${r * 100}%` }} />
@@ -62,14 +68,23 @@ export default function TotalBalanceCard() {
           <path d={buildSmoothPath(sparkPoints)} fill="none" stroke="#1a7a4a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
+
       <div className="flex gap-2 px-4 py-3">
-        <button className="flex-1 flex items-center justify-center gap-1.5 bg-[#1a7a4a] text-white rounded-full py-2 text-xs font-semibold hover:bg-[#155f3a] transition-colors">
+        <button
+          onClick={() => setToast("Send initiated — enter amount to continue")}
+          className="flex-1 flex items-center justify-center gap-1.5 bg-[#1a7a4a] text-white rounded-full py-2 text-xs font-semibold hover:bg-[#155f3a] transition-colors"
+        >
           Send <ArrowUp size={12} />
         </button>
-        <button className="flex-1 flex items-center justify-center gap-1.5 bg-gray-100 text-gray-600 rounded-full py-2 text-xs font-semibold hover:bg-gray-200 transition-colors">
+        <button
+          onClick={() => setToast("Receive — share your wallet address")}
+          className="flex-1 flex items-center justify-center gap-1.5 bg-gray-100 text-gray-600 rounded-full py-2 text-xs font-semibold hover:bg-gray-200 transition-colors"
+        >
           Receive <ArrowDown size={12} />
         </button>
       </div>
+
+      {toast && <Toast message={toast} onClose={() => setToast("")} />}
     </div>
   );
 }
